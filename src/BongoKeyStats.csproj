@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net471</TargetFramework>
+    <LangVersion>9.0</LangVersion>
+    <AssemblyName>BongoKeyStats</AssemblyName>
+    <RootNamespace>BongoKeyStats</RootNamespace>
+    <Nullable>disable</Nullable>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <DebugType>portable</DebugType>
+    <!-- Unity reference assemblies come from the game install: set env BONGOCAT_MANAGED or pass -p:ManagedDir=... -->
+    <ManagedDir Condition="'$(ManagedDir)'==''">$(BONGOCAT_MANAGED)</ManagedDir>
+  </PropertyGroup>
+  <Target Name="CheckManagedDir" BeforeTargets="ResolveAssemblyReferences">
+    <Error Condition="'$(ManagedDir)'=='' Or !Exists('$(ManagedDir)\UnityEngine.CoreModule.dll')" Text="Set the BONGOCAT_MANAGED environment variable (or -p:ManagedDir=...) to the game's BongoCat_Data\Managed folder." />
+  </Target>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+    <Reference Include="UnityEngine.CoreModule"><HintPath>$(ManagedDir)\UnityEngine.CoreModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.UI"><HintPath>$(ManagedDir)\UnityEngine.UI.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.UIModule"><HintPath>$(ManagedDir)\UnityEngine.UIModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.InputLegacyModule"><HintPath>$(ManagedDir)\UnityEngine.InputLegacyModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Unity.TextMeshPro"><HintPath>$(ManagedDir)\Unity.TextMeshPro.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,17 @@
+# build output
+bin/
+obj/
+release/
+dist/
+*.pdb
+# personal / local only - never publish game or third-party mod files
+vault/
+更新后过渡方案.md
+*.dll.bak
+*.keystats-original
+*.mod-original
+Assembly-CSharp*.dll
+# editor
+.vs/
+.idea/
+*.user
